@@ -12,23 +12,46 @@ export default {
   name: "app",
   data() {
     return {
-      msg: ""
+      msg: "sendmsg"
     };
   },
   methods: {
     postData: function() {
+      //  const that = this;
+      // axios.post('/process_post', {
+      //     name: '122',
+      //     pwd: '22'
+      // }).then(function (response) {
+      //     console.log(response);
+
+      //     // that.$router.push('/home');
+      // })
       let data ={name:'fjb',pwd: '123'}
       console.log('data',data)
       this.$http({
         method: "post",
         url: "http://127.0.0.1:8888/process_post",
         headers: { 'content-type': 'application/x-www-form-urlencoded' },//'application/json'       
-        data: qs.stringify(data)
+        data: qs.stringify(data),
+        withCredentials: true
       
       }).then(function (response) {
         console.log(response);
       })
     }
+    // test: function (params) {
+    //    let data ={name:'liy',pwd: '12344'}
+    //   console.log('data',data)
+    //   this.$http({
+    //     method: "post",
+    //     url: "http://127.0.0.1:8888/process_post",
+    //     headers: { 'content-type': 'application/x-www-form-urlencoded' },//'application/json'       
+    //     data: qs.stringify(data),
+    //     withCredentials: true
+    //   }).then(function (response) {
+    //     console.log(response);
+    //   })
+    // }
   }
 };
 </script>
