@@ -1,5 +1,8 @@
 # client
-
+```
+简介： 使用vue、vuex、vue-router、axios搭建的web应用
+使用时需下载node-server，并按照node-server安装
+```
 > client
 
 ## Build Setup
