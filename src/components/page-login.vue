@@ -1,31 +1,52 @@
 <template>
     <div>
-      <input type="text"/>
-        <h1>{{ msg }}</h1>
-        <h2 @click="postData">Essential Links</h2>
+      <article v-if="!showRegisterTips">
+        <p>
+          <span>用户名:</span><input type="text" v-model="user"/>
+        </p>
+        <p>
+          <span>密码:</span><input type="password" v-model="password"/>
+        </p>
+        <p> 
+          <h1>{{ tips }}</h1>
+          <button @click="dologin">登录</button>
+          <p @click="doregister">还没帐户？马上注册。</p>
+        </p>
+      </article>
+      <page-register v-if="showRegisterTips"></page-register>
     </div>
 </template>
 <script>
 import qs from 'qs'
+import pageRegister from './page-register'
 export default {
   name: 'Login',
   data () {
     return {
-      msg: 'sendmsg'
+      user: '',
+      password: '',
+      tips: '',
+      showRegisterTips: false
     }
   },
+  components: {
+    pageRegister
+  },
   methods: {
-    postData: function () {
-      let data = {name: 'fjb', pwd: '123'}
-      console.log('data', data)
+    dologin: function(){//此处使用箭头函数会改变this指向
+      let data = {name: this.user, pwd: this.password}
       this.$http({
         method: 'post',
-        url: '/process_post',
+        url: '/login',
         headers: { 'content-type': 'application/x-www-form-urlencoded' }, // 'application/json'
         data: qs.stringify(data)
-      }).then(function (response) {
+      }).then((response) => {
         console.log(response)
+        response.data.code === 200 ? this.$router.replace({ path: '/Monitor' }) : this.tips = '用户名或密码不正确' 
       })
+    },
+    doregister: function() {
+      this.showRegisterTips = true
     }
   }
 }
