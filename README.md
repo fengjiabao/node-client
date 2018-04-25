@@ -1,10 +1,13 @@
-# client
+# client简介：
 ```
-简介： 使用vue、vuex、vue-router、axios搭建的web应用
-使用时需下载node-server，并按照node-server安装
+使用vue、vuex、vue-router、axios搭建的web应用
+使用时需下载node-server，并按照node-server安装，服务端地址https://github.com/fengjiabao/node-server
 ```
 > client
-
+## 环境准备
+```
+本地安装mysql，如mariadb-10.1.22-winx64
+```
 ## Build Setup
 
 ``` bash
